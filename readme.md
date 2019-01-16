@@ -1,6 +1,6 @@
 # Hospital 
 
-This is small django project written in python3 that tries emulate Hospital system. 
+This is small Django project written in python3. The goal of this is to emulate hospital databse. User can edit each table from web page. 
 ## Getting Started
 
 ### Prerequisites
@@ -78,14 +78,4 @@ After this go to http://127.0.0.1:8000/polls/
 * **Lukasz Eckert** - *Initial work* 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
