@@ -1,0 +1,67 @@
+
+
+
+{% extends 'polls/base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<form method="get">
+    <div class="well">
+        <h4 style="margin-top: 0">BankAccount</h4>
+        <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.bank_name.label_tag }}
+            {% render_field filter.form.bank_name class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.number.label_tag }}
+            {% render_field filter.form.number class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.employ.label_tag }}
+            {% render_field filter.form.employ class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.patient.label_tag }}
+            {% render_field filter.form.patient class="form-control" %}
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+
+    </div>
+</form>
+<form action="/polls/bankaccount/add">
+    <input type="submit" value="Create new." />
+</form>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Bank Name</th>
+<th>Number</th>
+<th>Employ</th>
+<th>Patient</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in filter.qs %}
+    <tr>
+        <td><a href="{% url 'bankaccount_details' pk=user.id %}">{{ user.id }}</a></td>
+    <td> {{user.bank_name }}<td> {{user.number }}<td> {{user.employ }}<td> {{user.patient }}
+        <td><form method="POST" action="{% url 'bankaccount_delete' pk=user.id %}">
+        {% csrf_token %}<input type="submit" value="DELETE">
+</form></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No data</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+    

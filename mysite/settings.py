@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_tables2',
     'widget_tweaks',
     'django_filters',
     'crispy_forms'
@@ -83,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hospital',
-        'USER': 'hospital_user',
-        'PASSWORD': 'alamakota',
+        'USER': 'my_user',
+        'PASSWORD': '123456789',
         'HOST': 'localhost',
         'PORT': '',
 
