@@ -9,6 +9,7 @@ urlpatterns = [
     path('employ/(<int:pk>/', views.EmployUpdateView.as_view(success_url="/hospital/employ/"), name='employ_details'),
     path('employ/add/', views.EmployCreateView.as_view(success_url="/hospital/employ/"), name='employ_add'),
     path('employ_delete/<int:pk>)', views.EmployDeleteView.as_view(success_url="/hospital/employ/"), name='employ_delete'),
+    path('employ/raise', views.employ_raise_view, name='employ_raise'),
 
     path('jobposition/', views.jobposition_list_view, name='jobposition'),
     path('jobposition/(<int:pk>/', views.JobPositionUpdateView.as_view(success_url="/hospital/jobposition/"),

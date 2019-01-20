@@ -68,6 +68,11 @@ class BankAccountForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Save.'))
         self.helper.template = 'hospital/form/base_from.html'
 
+class CancelAppointment(forms.Form):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+
 
 class AppointmentForm(forms.ModelForm):
     class Meta:

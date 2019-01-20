@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import DeleteView, UpdateView, CreateView
+from django.forms import formset_factory
 from .filters import *
 from .forms import *
 from .models import *
 from django.http import HttpResponseRedirect
-
-
+from django.db import connection
 
 
 def employ_list_view(request):
@@ -39,6 +39,12 @@ class EmployDeleteView(DeleteView):
         except:
             return HttpResponseRedirect('/hospital/employ')
 
+def employ_raise_view(request):
+    # add validation
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT raise_salary(%s)", [request.POST['percent']])
+    
+    return HttpResponseRedirect('/hospital/employ')
 
 def jobposition_list_view(request):
     obj = JobPosition.objects.all()

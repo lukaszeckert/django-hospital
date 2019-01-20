@@ -29,6 +29,18 @@
 
     </div>
 </form>
+<form method="post" action="/hospital/employ/raise">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+            <label for="percent">Percent:</label>
+            <input name="percent" class="form-control" id="percent" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Raise salary
+        </button>
+</form>
 <form action="/hospital/employ/add">
     <input type="submit" value="Create new." />
 </form>

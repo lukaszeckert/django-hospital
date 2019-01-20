@@ -16,7 +16,7 @@ class EmployWithBossFactory(factory.django.DjangoModelFactory):
 
     first_name = factory.Faker('first_name')
     second_name = factory.Faker('last_name')
-    boss_id = factory.Iterator(Employ.objects.all())
+    boss = factory.Iterator(Employ.objects.all())
 
 
 class JobPositionFactory(factory.django.DjangoModelFactory):
@@ -25,7 +25,7 @@ class JobPositionFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('word')
     base_salary = factory.Faker('random_int')
-    number_hours = factory.Faker('random_digit')
+    number_hours = 40
 
 
 class EmploymentFactory(factory.django.DjangoModelFactory):
