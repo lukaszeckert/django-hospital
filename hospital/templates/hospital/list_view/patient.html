@@ -19,8 +19,8 @@
             {% render_field filter.form.first_name class="form-control" %}
         </div>
         <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.seoncd_name.label_tag }}
-            {% render_field filter.form.seoncd_name class="form-control" %}
+            {{ filter.form.second_name.label_tag }}
+            {% render_field filter.form.second_name class="form-control" %}
         </div>
         <div class="form-group col-sm-4 col-md-3">
             {{ filter.form.personal_number.label_tag }}
@@ -46,7 +46,7 @@
         <th>Id</th>
         <th>Birth Date</th>
 <th>First Name</th>
-<th>Seoncd Name</th>
+<th>Second Name</th>
 <th>Personal Number</th>
 <th>Nfz Number</th>
 
@@ -56,7 +56,7 @@
     {% for user in filter.qs %}
     <tr>
         <td><a href="{% url 'patient_details' pk=user.id %}">{{ user.id }}</a></td>
-    <td> {{user.birth_date }}<td> {{user.first_name }}<td> {{user.seoncd_name }}<td> {{user.personal_number }}<td> {{user.nfz_number }}
+    <td> {{user.birth_date }}<td> {{user.first_name }}<td> {{user.second_name }}<td> {{user.personal_number }}<td> {{user.nfz_number }}
         <td><form method="POST" action="{% url 'patient_delete' pk=user.id %}">
         {% csrf_token %}<input type="submit" value="DELETE">
 </form></td>

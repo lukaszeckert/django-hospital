@@ -1,3 +1,3 @@
 .idea/*
 hospital/__pycache__/*
-hospital/migrations/*
+hospital/migrations/__pycache__/*

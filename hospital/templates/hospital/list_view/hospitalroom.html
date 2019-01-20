@@ -8,7 +8,7 @@
 {% block content %}
 <form method="get">
     <div class="well">
-        <h4 style="margin-top: 0">HospitalRomm</h4>
+        <h4 style="margin-top: 0">HospitalRoom</h4>
         <div class="row">
         <div class="form-group col-sm-4 col-md-3">
             {{ filter.form.places.label_tag }}
@@ -25,7 +25,7 @@
 
     </div>
 </form>
-<form action="/hospital/hospitalromm/add">
+<form action="/hospital/hospitalroom/add">
     <input type="submit" value="Create new." />
 </form>
 <table class="table table-bordered">
@@ -40,9 +40,9 @@
     <tbody>
     {% for user in filter.qs %}
     <tr>
-        <td><a href="{% url 'hospitalromm_details' pk=user.id %}">{{ user.id }}</a></td>
+        <td><a href="{% url 'hospitalroom_details' pk=user.id %}">{{ user.id }}</a></td>
     <td> {{user.places }}<td> {{user.department }}
-        <td><form method="POST" action="{% url 'hospitalromm_delete' pk=user.id %}">
+        <td><form method="POST" action="{% url 'hospitalroom_delete' pk=user.id %}">
         {% csrf_token %}<input type="submit" value="DELETE">
 </form></td>
     </tr>

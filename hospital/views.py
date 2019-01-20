@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 
 
 def employ_list_view(request):
-    obj = Employ.objects.all()
+    obj = Employ.objects.annotate(salary=Func(F('id'), function='salary')).all()
     filter = EmployFilter(request.GET, queryset=obj)
     return render(request, 'hospital/list_view/employ.html', {'filter': filter})
 
@@ -264,36 +264,36 @@ class DepartmentDeleteView(DeleteView):
             return HttpResponseRedirect('/hospital/department')
 
 
-def hospitalromm_list_view(request):
+def hospitalroom_list_view(request):
     obj = HospitalRoom.objects.all()
     filter = HospitalRoomFilter(request.GET, queryset=obj)
-    return render(request, 'hospital/list_view/hospitalromm.html', {'filter': filter})
+    return render(request, 'hospital/list_view/hospitalroom.html', {'filter': filter})
 
 
-class HospitalRommCreateView(CreateView):
+class HospitalRoomCreateView(CreateView):
     model = HospitalRoom
     fields = '__all__'
     template_name = 'hospital/form/base_from.html'
 
 
-class HospitalRommUpdateView(UpdateView):
+class HospitalRoomUpdateView(UpdateView):
     model = HospitalRoom
     form_class = HospitalRooForm
     template_name = 'hospital/update_view/employ_update_view.html'
 
 
-class HospitalRommDeleteView(DeleteView):
+class HospitalRoomDeleteView(DeleteView):
     model = HospitalRoom
 
     def get_object(self, queryset=None):
-        obj = super(HospitalRommDeleteView, self).get_object()
+        obj = super(HospitalRoomDeleteView, self).get_object()
         return obj
 
     def post(self, request, *args, **kwargs):
         try:
             return super().post(request, *args, **kwargs)
         except:
-            return HttpResponseRedirect('/hospital/hospitalromm')
+            return HttpResponseRedirect('/hospital/hospitalroom')
 
 
 def residence_list_view(request):

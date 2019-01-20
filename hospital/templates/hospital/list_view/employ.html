@@ -39,6 +39,7 @@
         <th>First name</th>
 <th>Second name</th>
 <th>Boss id</th>
+<th>Salary</th>
 
     </tr>
     </thead>
@@ -46,7 +47,8 @@
     {% for user in filter.qs %}
     <tr>
         <td><a href="{% url 'employ_details' pk=user.id %}">{{ user.id }}</a></td>
-    <td> {{user.first_name }}<td> {{user.second_name }}<td> {{user.boss_id.id }}
+        <td> {{user.first_name }}<td> {{user.second_name }}<td> {{user.boss_id.id }}
+                <td>{{user.salary|floatformat:-2}}</td>
         <td><form method="POST" action="{% url 'employ_delete' pk=user.id %}">
         {% csrf_token %}<input type="submit" value="DELETE">
 </form></td>

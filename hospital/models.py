@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F, Func
 from django.core.exceptions import ValidationError
 import datetime
 
@@ -26,13 +27,10 @@ class JobPosition(models.Model):
 class Employ(models.Model):
     first_name = models.CharField(max_length=40, blank=False, null=False)
     second_name = models.CharField(max_length=40, blank=False, null=False)
-    boss_id = models.ForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
+    boss = models.ForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
-        boss_id = self.boss_id
-        if boss_id is not None:
-            boss_id = boss_id.id
-        return "First name: {}, Second name: {}, Boss id: {}".format(self.first_name, self.second_name, boss_id)
+        return "First name: {}, Second name: {}, Boss id: {}".format(self.first_name, self.second_name, self.boss)
 
     def clean(self, *args, **kwargs):
         super().clean(*args, **kwargs)
@@ -40,7 +38,7 @@ class Employ(models.Model):
         self.clean_boss_id()
 
     def clean_boss_id(self):
-        if self.boss_id is not None and self.boss_id.id == self.id:
+        if self.boss is not None and self.boss.id == self.id:
             raise ValidationError('The boss id can not be equal to employ id.')
 
 
@@ -56,7 +54,6 @@ class Employment(models.Model):
 
     def __str__(self):
         return "Hours: {0} {1}".format(self.hours, self.position)
-
 
 class Patient(models.Model):
     birth_date = models.DateField(blank=False, null=False)
@@ -92,6 +89,9 @@ class FamilyDoctor(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     chief = models.ForeignKey(Employ, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "Name: {}, Chief: {} {}".format(self.name, self.chief.first_name, self.chief.second_name)
 
 
 class HospitalRoom(models.Model):
