@@ -6,7 +6,11 @@ from .forms import *
 from .models import *
 from django.http import HttpResponseRedirect
 from django.db import connection
+from django.shortcuts import redirect
+from django.contrib import messages
 
+def index(request):
+    return redirect("employ")
 
 def employ_list_view(request):
     obj = Employ.objects.annotate(salary=Func(F('id'), function='salary')).all()
@@ -37,6 +41,7 @@ class EmployDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/employ')
 
 def employ_raise_view(request):
@@ -75,6 +80,7 @@ class JobPositionDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/jobposition')
 
 
@@ -107,6 +113,7 @@ class EmploymentDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/employment')
 
 
@@ -139,6 +146,7 @@ class PatientDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/patient')
 
 
@@ -171,6 +179,7 @@ class BankAccountDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/bankaccount')
 
 
@@ -203,6 +212,7 @@ class AppointmentDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/appointment')
 
 
@@ -235,6 +245,7 @@ class FamilyDoctorDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/familydoctor')
 
 
@@ -267,6 +278,7 @@ class DepartmentDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/department')
 
 
@@ -299,6 +311,7 @@ class HospitalRoomDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/hospitalroom')
 
 
@@ -331,4 +344,5 @@ class ResidenceDeleteView(DeleteView):
         try:
             return super().post(request, *args, **kwargs)
         except:
+            messages.error(request, "You can not delete this row.")
             return HttpResponseRedirect('/hospital/residence')

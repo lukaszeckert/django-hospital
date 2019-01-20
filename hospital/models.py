@@ -30,7 +30,10 @@ class Employ(models.Model):
     boss = models.ForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
-        return "First name: {}, Second name: {}, Boss id: {}".format(self.first_name, self.second_name, self.boss)
+        boss_id = '-'
+        if self.boss is not None:
+            boss_id = self.boss.id
+        return "First name: {}, Second name: {}, Boss id: {}".format(self.first_name, self.second_name, boss_id)
 
     def clean(self, *args, **kwargs):
         super().clean(*args, **kwargs)
