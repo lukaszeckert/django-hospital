@@ -45,7 +45,14 @@ class EmployDeleteView(DeleteView):
             return HttpResponseRedirect('/hospital/employ')
 
 def employ_raise_view(request):
-    # add validation
+    try:
+        if float(request.POST['percent']) <= 0:
+            messages.error(request, "Percent must be greater than 0")
+            return HttpResponseRedirect('/hospital/employ')
+    except:
+        messages.error(request, "Enter a number")
+        return HttpResponseRedirect('/hospital/employ')
+
     with connection.cursor() as cursor:
         cursor.execute("SELECT raise_salary(%s)", [request.POST['percent']])
     
