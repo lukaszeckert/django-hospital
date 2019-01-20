@@ -13,7 +13,7 @@ sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-cont
 ```
 Django
 ```
-pip3 install django psycopg2 django-widget-tweaks django_filters django-crispy-forms
+pip3 install django psycopg2 django-widget-tweaks django-filter django-crispy-forms factory_boy
 ```
 
 ### Create a Database and Database User
@@ -28,7 +28,7 @@ CREATE DATABASE hospital;
 ```
 Create user. If you want to change user name and password you schould also change values inside mysite/settings DATABASE configuration.
 ```
-CREATE my_user WITH PASSWORD '123456789';
+CREATE USER my_user WITH PASSWORD '123456789';
 ```
 Setup user.
 ```
@@ -49,8 +49,8 @@ python3 manage.py makemigrations
 ```
 This schould print something simillar to:
 ```
-Migrations for 'polls':
-  polls/migrations/0001_initial.py
+Migrations for 'hospital':
+  hospital/migrations/0001_initial.py
     - Create model Appointment
     - Create model BankAccount
     ...
@@ -72,7 +72,7 @@ In order to start server execute:
 ```
 python3 manage.py runserver
 ```
-After this go to http://127.0.0.1:8000/polls/
+After this go to http://127.0.0.1:8000/hospital/
 ## Authors
 
 * **Lukasz Eckert** - *Initial work* 
