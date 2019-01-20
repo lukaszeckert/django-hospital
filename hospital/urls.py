@@ -6,13 +6,13 @@ urlpatterns = [
    # path('search/', views.search, name='search'),
 
     path('employ/', views.employ_list_view, name='employ'),
-    path('employ/(<int:pk>/', views.EmployUpdateView.as_view(success_url="/hospital/employ/"), name='employ_details'),
+    path('employ/<int:pk>/', views.EmployUpdateView.as_view(success_url="/hospital/employ/"), name='employ_details'),
     path('employ/add/', views.EmployCreateView.as_view(success_url="/hospital/employ/"), name='employ_add'),
     path('employ_delete/<int:pk>)', views.EmployDeleteView.as_view(success_url="/hospital/employ/"), name='employ_delete'),
     path('employ/raise', views.employ_raise_view, name='employ_raise'),
 
     path('jobposition/', views.jobposition_list_view, name='jobposition'),
-    path('jobposition/(<int:pk>/', views.JobPositionUpdateView.as_view(success_url="/hospital/jobposition/"),
+    path('jobposition/<int:pk>/', views.JobPositionUpdateView.as_view(success_url="/hospital/jobposition/"),
          name='jobposition_details'),
     path('jobposition/add/', views.JobPositionCreateView.as_view(success_url="/hospital/jobposition/"),
          name='jobposition_add'),
@@ -20,7 +20,7 @@ urlpatterns = [
          name='jobposition_delete'),
 
     path('employment/', views.employment_list_view, name='employment'),
-    path('employment/(<int:pk>/', views.EmploymentUpdateView.as_view(success_url="/hospital/employment/"),
+    path('employment/<int:pk>/', views.EmploymentUpdateView.as_view(success_url="/hospital/employment/"),
          name='employment_details'),
     path('employment/add/', views.EmploymentCreateView.as_view(success_url="/hospital/employment/"),
          name='employment_add'),
@@ -28,19 +28,19 @@ urlpatterns = [
          name='employment_delete'),
 
     path('patient/', views.patient_list_view, name='patient'),
-    path('patient/(<int:pk>/', views.PatientUpdateView.as_view(success_url="/hospital/patient/"), name='patient_details'),
+    path('patient/<int:pk>/', views.PatientUpdateView.as_view(success_url="/hospital/patient/"), name='patient_details'),
     path('patient/add/', views.PatientCreateView.as_view(success_url="/hospital/patient/"), name='patient_add'),
     path('patient_delete/<int:pk>)', views.PatientDeleteView.as_view(success_url="/hospital/patient/"),
          name='patient_delete'),
 
     path('patient/', views.patient_list_view, name='patient'),
-    path('patient/(<int:pk>/', views.PatientUpdateView.as_view(success_url="/hospital/patient/"), name='patient_details'),
+    path('patient/<int:pk>/', views.PatientUpdateView.as_view(success_url="/hospital/patient/"), name='patient_details'),
     path('patient/add/', views.PatientCreateView.as_view(success_url="/hospital/patient/"), name='patient_add'),
     path('patient_delete/<int:pk>)', views.PatientDeleteView.as_view(success_url="/hospital/patient/"),
          name='patient_delete'),
 
     path('bankaccount/', views.bankaccount_list_view, name='bankaccount'),
-    path('bankaccount/(<int:pk>/', views.BankAccountUpdateView.as_view(success_url="/hospital/bankaccount/"),
+    path('bankaccount/<int:pk>/', views.BankAccountUpdateView.as_view(success_url="/hospital/bankaccount/"),
          name='bankaccount_details'),
     path('bankaccount/add/', views.BankAccountCreateView.as_view(success_url="/hospital/bankaccount/"),
          name='bankaccount_add'),

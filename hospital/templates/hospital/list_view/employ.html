@@ -19,8 +19,8 @@
             {% render_field filter.form.second_name class="form-control" %}
         </div>
         <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.boss_id.id.label_tag }}
-            {% render_field filter.form.boss_id.id class="form-control" %}
+            {{ filter.form.boss.label_tag }}
+            {% render_field filter.form.boss class="form-control" %}
         </div>
         </div>
         <button type="submit" class="btn btn-primary">
@@ -59,7 +59,7 @@
     {% for user in filter.qs %}
     <tr>
         <td><a href="{% url 'employ_details' pk=user.id %}">{{ user.id }}</a></td>
-        <td> {{user.first_name }}<td> {{user.second_name }}<td> {{user.boss_id.id }}
+        <td> {{user.first_name }}<td> {{user.second_name }}<td> {{user.boss.id }} </td>
                 <td>{{user.salary|floatformat:-2}}</td>
         <td><form method="POST" action="{% url 'employ_delete' pk=user.id %}">
         {% csrf_token %}<input type="submit" value="DELETE">

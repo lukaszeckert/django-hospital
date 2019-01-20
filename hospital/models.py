@@ -55,6 +55,7 @@ class Employment(models.Model):
     def __str__(self):
         return "Hours: {0} {1}".format(self.hours, self.position)
 
+
 class Patient(models.Model):
     birth_date = models.DateField(blank=False, null=False)
     first_name = models.CharField(max_length=30, blank=False, null=False)
@@ -63,7 +64,8 @@ class Patient(models.Model):
     nfz_number = models.CharField(max_length=30, blank=True, null=True, default=None)
 
     def __str__(self):
-        return "First name: {}, Second name: {}, Personal number: {}".format(self.first_name, self.second_name, self.personal_number)
+        return "First name: {}, Second name: {}, Personal number: {}".format(self.first_name, self.second_name,
+                                                                             self.personal_number)
 
 
 class BankAccount(models.Model):
@@ -71,6 +73,13 @@ class BankAccount(models.Model):
     number = models.CharField(max_length=20, blank=False, null=False)
     employ = models.ForeignKey(Employ, on_delete=models.PROTECT, null=True)
     patient = models.ForeignKey(Patient, on_delete=models.PROTECT, null=True)
+
+    def clean(self):
+        super().clean()
+        if self.employ is not None and self.patient is not None:
+            raise ValidationError('Employ and patient can not be set up in the same time.')
+        if self.employ is None and self.patient is None:
+            raise ValidationError('Employ or patient must be set up.')
 
 
 class Appointment(models.Model):
@@ -101,9 +110,19 @@ class HospitalRoom(models.Model):
     def __str__(self):
         return "ID: {}, Places: {}, Department: {}".format(self.id, self.places, self.department.name)
 
+    def clean(self):
+        super().clean()
+        if self.places <= 0:
+            raise ValidationError("Number of places must be greater than 0.")
+
 
 class Residence(models.Model):
     beginning_date = models.DateField(default=datetime.date.today, null=False)
-    end_date = models.DateField(null=True)
+    end_date = models.DateField(null=True, blank=True)
     patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
     room = models.ForeignKey(HospitalRoom, on_delete=models.PROTECT)
+
+    def clean(self):
+        super().clean()
+        if self.beginning_date >= self.end_date:
+            raise ValidationError("End data must be greater than beginning data.")

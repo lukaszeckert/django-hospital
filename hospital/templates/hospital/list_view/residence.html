@@ -11,7 +11,7 @@
         <h4 style="margin-top: 0">Residence</h4>
         <div class="row">
         <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.beginning_date   .label_tag }}
+            {{ filter.form.beginning_date.label_tag }}
             {% render_field filter.form.beginning_date class="form-control" %}
         </div>
         <div class="form-group col-sm-4 col-md-3">
@@ -40,7 +40,7 @@
     <thead>
     <tr>
         <th>Id</th>
-        <th>Begining Date</th>
+        <th>Beginning Date</th>
 <th>End Date</th>
 <th>Patient</th>
 <th>Room</th>
@@ -51,7 +51,7 @@
     {% for user in filter.qs %}
     <tr>
         <td><a href="{% url 'residence_details' pk=user.id %}">{{ user.id }}</a></td>
-    <td> {{user.begining_date }}<td> {{user.end_date }}<td> {{user.patient }}<td> {{user.room }}
+    <td> {{user.beginning_date }}<td> {{user.end_date }}<td> {{user.patient }}<td> {{user.room }}
         <td><form method="POST" action="{% url 'residence_delete' pk=user.id %}">
         {% csrf_token %}<input type="submit" value="DELETE">
 </form></td>
